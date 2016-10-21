@@ -102,18 +102,9 @@ char *con(char a[], char b[])
 
       str = new char[n];
 
-      for (int i = 0, j = 0; i < n + 1;i++)
-      {
-          if(a[i] != '\0')
-          {
-              str[i] = a[i];
-          }
-          else {
-              str[i] = b[j];
-              j++;
-          }
-
-      }
+      strcpy(str, a);
+      strcat(str,b= b);
+    
     return str;
 }
 
