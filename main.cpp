@@ -1,97 +1,59 @@
 #include <iostream>
-#include <string.h>
-#include <cmath>
-#include <ctime>
+#include <cassert>
+#include <cstring>
 
 using namespace std;
 
-
-struct student{
-    char name[20];
-    unsigned short  age;
-    float pga;
-};
-
-//concotenation
+//concotenation Task #7
 char *con(char a[], char b[]);
-//count repeater of char
+
+//count repeater of char Task #8
 void counter_str(char a[]);
-//cryptography
-void crypto(char a[]);
-//to up first signs in words
+
+//to up first signs in words Tsak #10
 void upwords(char a[]);
-//odd array random
-void Odd_arr();
-//delete fist sings in words
+
+//delete fist sings in words Task #11
 void word_del(char a[]);
-//password gen
+
+//odd array random Task #13
+void Odd_arr();
+
+//password gen Task #14
 char* pass_gen();
-
-void odd_swaper();
-
-void multipl_matrix();
 
 int main()
 {
-    int N;
-    float mid_val_pga = 0,counter = 0;
-//               char str1[20], str2[20];
-//               cout << "Enter str1: "; gets(str1);
-//               cout << "Enter str2: "; gets(str2);
-//               con(str1,str2);
-//               crypto(str1);
-//               upwords(str1);
-//               Odd_arr();
-//               word_del(str1);
-//               cout << pass_gen() << endl;
-//  НЕРАБОТАЕТ   odd_swaper(); ///
-//               multipl_matrix();
+    /////Task #7 //////
+   char str1[] = "qwerty";
+   char str2[] = "ytrewq";
+   cout << con(str1, str2) << endl;
+   cout << "==============" << endl;
 
-    student *group, bedstudent, goodstudent;
+   /////Task #8 ///////
+   counter_str("introducing");
+   cout << "==============" << endl;
 
-    cout << "Enter count of students: ";
-    cin >> N;
-    group = new student[N];
-    for(int i = 0; i < N; i++)
-    {
-        cout << "Enter the name for " << i + 1 << " student: ";
-        cin >> group[i].name;
-        cout << "Enter age of " << i + 1 << " student: ";
-        cin >> group[i].age;
-        cout << "Enter pga of " << i + 1 << " student: ";
-        cin >> group[i].pga;
+   /////Task #10 /////
+   upwords("qwe rty uio");
+   cout << endl << "==============" << endl;
 
-    }
+   /////Task #11 /////
+   word_del("qwe rty uio");
+   cout << endl << "==============" << endl;
 
-    for(int i = 0; i < N; i++)
-    {
-      if(group[i].pga > group[i + 1].pga)
-      {
-          goodstudent = group[i];
-      }
-      if (group[i].pga < group[i + 1].pga)
-      {
+   /////Task #13 /////
+   Odd_arr();
+   cout << endl << "==============" << endl;
 
-          bedstudent = group[i];
+   /////Task #14 /////
+   cout << pass_gen();
+   cout << "==============" << endl;
 
-      }
-      counter += group[i].pga;
-      mid_val_pga = counter / N;
-    }
-
-    system("clear");
-    cout << "Bed student: " << endl;
-    cout << bedstudent.name << endl << bedstudent.age << endl << bedstudent.pga << endl;
-    cout << "Good student: " << endl;
-    cout << goodstudent.name << endl << goodstudent.age << endl << goodstudent.pga << endl;
-    cout << "Midle pga of group: " << mid_val_pga << endl;
-
-
-
-    return 0;
+   return 0;
 }
 
-
+//Task #7
 char *con(char a[], char b[])
 {
     int n;
@@ -104,10 +66,11 @@ char *con(char a[], char b[])
 
       strcpy(str, a);
       strcat(str,b= b);
-    
+
     return str;
 }
 
+//Task #8
 void counter_str(char a[])
 {
     int counter = 0, n = strlen(a);
@@ -128,32 +91,7 @@ void counter_str(char a[])
     }
 }
 
-void crypto(char a[])
-{
-
-    int n = strlen(a);
-    int ch;
-    char *m = new char[n];
-
-
-    for(int i = 0; i < n; i++)
-    {
-        ch = a[i];
-        if(ch + 6 > 122)
-        {
-            ch = ch + 5;
-            ch = ch - 25;
-            m[i] = ch;
-        }
-        else
-        {
-            m[i] = a[i] + 5;
-
-        }
-    }
-cout << m;
-}
-
+//Task #10
 void upwords(char a[])
 {
 
@@ -182,9 +120,9 @@ void upwords(char a[])
 
 
     }
-   // cout << out_str;
 }
 
+//Task #11
 void word_del(char a[])
 {
 
@@ -213,9 +151,9 @@ void word_del(char a[])
 
 
     }
-   // cout << out_str;
 }
 
+//Task #13
 void Odd_arr()
 {
     srand(time(0));
@@ -246,6 +184,7 @@ void Odd_arr()
         }
 }
 
+//Task #14
 char* pass_gen()
 {
     char *pas;
@@ -273,113 +212,4 @@ char* pass_gen()
         }
     }
    return pas;
-}
-
-void odd_swaper()
-{
-    int *line;
-    line = new int[12];
-    int flag = 0;
-    for(int i = 0; i < 12; i++)
-    {
-        if(flag < 2)
-        {
-            cout << "lol";
-            flag++;
-        }
-    }
-
-}
-
-void multipl_matrix()
-{
-    int **matrix1, x1, y1;
-    int **matrix2, x2, y2;
-    int **matrix_out, n;
-
-    cout << "Enter the size of first matrix: " << endl << "x: ";
-    cin >> x1;
-    cout << "y: "; cin >> y1;
-    cout << "Enterthe size of second matrix: " << endl << "x: ";
-    cin >> x2;
-    cout << "y: ";
-    cin >> y2;
-
-    matrix1 = new int*[x1];
-    for(int i = 0;i < x1; i++)
-    {
-        matrix1[i] = new int[y1];
-    }
-
-    matrix2 = new int *[x2];
-    for(int i = 0; i < x2; i++)
-    {
-        matrix2[i] = new int[y2];
-    }
-
-    if(y1 != x2)
-    {
-        cout << "Those matrixs cant be multiple!";
-        for(int i = 0; i < x1; i++)
-        {
-            delete []matrix1[i];
-
-        }
-        for(int i = 0; i < x2; i++)
-        {
-            delete []matrix2[i];
-        }//////////////////////////////////////////////////////////
-    }else {
-        cout << "Enter elements of matrix 1: " << endl;
-        for(int i = 0; i < x1; i++)
-        {
-            for(int j = 0; j < y1; j++)
-            {
-               cin >> matrix1[i][j];
-            }
-        }
-        system("clear");
-        cout << "Enter elements of matrix 2: " << endl;
-        for(int i = 0; i < x1; i++)
-        {
-            for(int j = 0; j < y1; j++)
-            {
-               cin >> matrix2[i][j];
-            }
-        }
-        matrix_out = new int*[x1];
-        for(int i = 0; i < x1; i++)
-        {
-            matrix_out[i] = new int[y2];
-        }
-
-        for(int i = 0; i < x1; i++)
-        {
-            for(int j = 0; j < y2; j++)
-            {
-                matrix_out[i][j] = 0;
-            }
-        }
-
-        for(int i = 0; i < x1; i++)
-        {
-            for(int j = 0; j < y2; j++)
-            {
-                for(int m = 0; m < x1; m++)
-                {
-                    matrix_out[i][j] += matrix1[i][m] * matrix2[j][m];
-
-                }
-
-            }
-        }
-        for(int i = 0; i < x1; i++)
-        {
-            for(int j = 0; j < y2; j++)
-            {
-                cout << matrix_out[i][j] << ' ';
-            }
-            cout << endl;
-        }
-}
 }
