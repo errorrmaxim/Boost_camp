@@ -10,11 +10,18 @@ char *con(char a[], char b[]);
 //count repeater of char Task #8
 void counter_str(char a[]);
 
+//crypto code Task #9
+template <typename T>
+T *crypto(T code[]);
+
 //to up first signs in words Tsak #10
 void upwords(char a[]);
 
 //delete fist sings in words Task #11
 void word_del(char a[]);
+
+//number swaper Task #12
+void Odd_swap(int arr[]);
 
 //odd array random Task #13
 void Odd_arr();
@@ -33,6 +40,10 @@ int main()
    /////Task #8 ///////
    counter_str("introducing");
    cout << "==============" << endl;
+    
+   /////Task #9 ///////
+   cout << crypto(str1);
+   cout << endl << "==============" << endl;
 
    /////Task #10 /////
    upwords("qwe rty uio");
@@ -41,7 +52,16 @@ int main()
    /////Task #11 /////
    word_del("qwe rty uio");
    cout << endl << "==============" << endl;
-
+    
+   /////Task #12 /////
+   int arr[] = {0,2,1,3,4,6,3,5,8,10,7,9,12,11};
+    for(int i = 0; i < 12; i++)
+    {
+        cout << arr[i] << ' ';
+    }
+    cout << endl;
+    Odd_swap(arr);
+    
    /////Task #13 /////
    Odd_arr();
    cout << endl << "==============" << endl;
@@ -89,6 +109,19 @@ void counter_str(char a[])
         counter = 0;
 
     }
+}
+//Task #9
+template <typename T>
+T *crypto(T code[])
+{
+    int n;
+    n = strlen(code);
+    for(int i = 0; i < n; i++)
+    {
+
+      code[i] += 5;
+    }
+    return code;
 }
 
 //Task #10
@@ -151,6 +184,20 @@ void word_del(char a[])
 
 
     }
+}
+
+//Task #12
+void Odd_swap(int arr[])
+{
+  for(int i = 1, j = 0; i < 12; i+=2, j+=2)
+  {
+      swap(arr[i], arr[j]);
+  }
+  for(int i = 0; i < 12; i++)
+  {
+      cout << arr[i] << ' ';
+  }
+
 }
 
 //Task #13
