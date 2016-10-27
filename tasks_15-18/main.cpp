@@ -38,9 +38,10 @@ void proces_professor(student *m, int N);
 
 int main(int argc, char *argv[])
 {
-    matrix_multiple();
+     assert(determ() == 255);
+    cout << "Function determinate works!" << endl;
     ///////////////////////////
-    determ();
+      matrix_multiple();
     ///////////////////////////
     student *Group = new student[N];
     professor *Professors = new professor[M];
