@@ -50,11 +50,20 @@ public:
 
 class  Professor : public Person
 {
+private:
+    int salary;
 public:
-    void where()
+    void creating()
     {
         cout << "Professor: " << endl;
-
+        set_person();
+        cout << "Enter salary: "; cin >> salary;
+    }
+    void showing()
+    {
+        cout << "Professor: " << name << ' ' << lname << endl;
+        cout << "Age: " << age << endl;
+        cout << "Salary: " << salary << endl;
     }
 
 };
@@ -71,13 +80,16 @@ void show_person(Person &m)
 int main(int argc, char *argv[])
 {
     Person base_obj;
-    Student f_obj;
-    Professor s_obj;
+    Student std1;
+    Professor prf1;
 
-    create_person(f_obj);
+    create_person(std1);
     cout << "=====================" << endl;
-    show_person(f_obj);
-
+    show_person(std1);
+    cout << "=========== P ==========" << endl;
+    create_person(prf1);
+    cout << "=====================" << endl;
+    show_person(prf1);
 
 return 0;
 }
