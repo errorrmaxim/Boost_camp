@@ -136,12 +136,12 @@ int main(int argc, char *argv[])
         get_val(trg1[i]);
         cout << "Rectangle num" << i+1 << endl;
         get_val(rec1[i]);
-
+        system("clear");
     }
     for(int i = 0; i < 2; i++)
     {
        sum_area += get_area(cir1[i]) + get_area(rec1[i]) + get_area(trg1[i]);
-
+      
     }
 
 cout << sum_area << endl;
