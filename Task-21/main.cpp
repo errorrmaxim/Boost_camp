@@ -144,7 +144,7 @@ int main(int argc, char *argv[])
       
     }
 
-cout << sum_area << endl;
+cout << "Sun of all shapes = " << sum_area << endl;
 
     return 0;
 }
