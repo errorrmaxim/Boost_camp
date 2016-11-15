@@ -58,9 +58,7 @@ public:
             value = i;
             return *this;
         }
-};ы
-
-
+};
 
 
 
