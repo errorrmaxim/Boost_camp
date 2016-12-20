@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string.h>
 #include <cassert>
-
+#include <thread>
 
 using namespace std;
 
@@ -53,6 +53,8 @@ class MyString
             char *newStr = new char[length];
             strcpy (newStr, str);
             strcat (newStr, t.str);
+            delete[] str;
+            str = new char[length];
             strcpy (str, newStr);
             str[length-1] = '\0';
             delete[] newStr;
@@ -78,13 +80,42 @@ class MyString
 
 int main(int argc, char *argv[])
 {
-    MyString lol;
+    MyString lol1, lol2;
 
-    lol = "kek";
-    lol += lol;
+    lol1 = "kek";
+    lol2 = lol1;
+    lol2 += "kekkek";
+    cout << lol2 << endl;
 
-    cout << lol << endl;
 
+    string m = "asd";
+    string n;
+    n = m;
+
+
+    cout << "m: " << &m << endl;
+    cout << "n: " << &n << endl;
 
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
