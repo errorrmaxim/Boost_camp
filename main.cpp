@@ -1,0 +1,104 @@
+#include <iostream>
+#include <cstring>
+#include <cassert>
+
+using namespace std;
+
+
+
+class HTMLElement
+{
+    unsigned width;
+    unsigned height;
+    bool hidden;
+public:
+    HTMLElement()   {}
+    HTMLElement(unsigned W, unsigned H, bool hid): width(W),height(H),hidden(hid)   {}
+    unsigned int Width() const
+    {
+        return width;
+    }
+    unsigned int Height() const
+    {
+        return height;
+    }
+    bool Hidden() const;
+    virtual string Render()=0;
+
+};
+
+class HTMLButtonElement : public HTMLElement
+{
+    string TITLE;
+public:
+    HTMLButtonElement() : HTMLElement(), TITLE("title-of-the-button")   {}
+    HTMLButtonElement(unsigned w, unsigned h, bool hid, string title) : HTMLElement(w,h,hid), TITLE(title)
+    {}
+
+    const string& Title() const
+    {
+        return TITLE;
+    }
+    string Render()
+    {
+        return "<button>" + TITLE + "</button>";
+    }
+};
+
+class HTMLImageElement : public HTMLElement
+{
+    string URL;
+public:
+    HTMLImageElement() : HTMLElement()  {}
+    HTMLImageElement(unsigned w, unsigned h, bool hid, string url) : HTMLElement(w,h,hid), URL(url)
+    {}
+    const string& Url() const;
+    string Render()
+    {
+        int w = static_cast<unsigned>(Width());
+        int h = static_cast<unsigned>(Height());
+        string width = to_string(w);
+        string heig = to_string(h);
+        string ret_info = "<img src = " + URL + "\" " + "Height = \"" + heig + "\" width = \"" + width + "\">";
+        return ret_info;
+    }
+};
+
+class HTMLTextAreaElement : public HTMLElement
+{
+    string TEXT;
+public:
+    HTMLTextAreaElement() : HTMLElement(), TEXT("content-of-the-text-area") {}
+    HTMLTextAreaElement(string text) : HTMLElement(100, 50, true), TEXT(text) {}
+    HTMLTextAreaElement(unsigned w, unsigned h, bool hid, string text) : HTMLElement(w,h,hid), TEXT(text) {}
+    const string& Content() const
+    {
+        return TEXT;
+    }
+    string Render()
+    {
+        string ret_info = "<textarea>\n" + TEXT + "\n</textarea>";
+        return ret_info;
+    }
+};
+
+string get_render(HTMLElement &obj)
+{
+    return obj.Render();
+}
+
+int main(int argc, char *argv[])
+{
+
+HTMLButtonElement obj1;
+HTMLImageElement obj2;
+HTMLTextAreaElement obj3;
+
+cout << get_render(obj1) << endl;
+cout << get_render(obj2) << endl;
+cout << get_render(obj3) << endl;
+
+
+
+    return 0;
+}
