@@ -8,30 +8,30 @@ using namespace std;
 template <typename T>
 class ImmutableBuffer
 {
-       vector<T>buffer_first;
-       const vector<T>buff_const = buffer_first;
-       bool single_count = false;
+private:
+
+    const vector<T>buff_const;
 
 public:
        ImmutableBuffer()   {}
 
-       ImmutableBuffer(T *val, int size_arr): buffer_first(make_vector(val,size_arr))  {}
+       ImmutableBuffer(T *val, int size_arr): buff_const(make_vector(val,size_arr))  {}
 
        vector<T>make_vector(T *val, int size)                      // function for make vector
-    {
-        vector<T>buffer_maker;
-        for(int i = 0; i < size; i++)
         {
-            buffer_maker.insert(buffer_maker.end(), val[i]);
+            vector<T>buffer_maker;
+            for(int i = 0; i < size; i++)
+            {
+                buffer_maker.insert(buffer_maker.end(), val[i]);
+            }
+            return buffer_maker;                                    // we are returning vector
         }
-        return buffer_maker;                                    // we are returning vector
-    }
 
        friend ostream& operator <<(ostream& os, const ImmutableBuffer& buf)
         {
             for(int i = 0; i < buf.buff_const.size(); i++)
             {
-                os << buf.buff_const[i];
+                os << buf.buff_const[i] << ' ';
 
             }
             return os;
@@ -49,14 +49,7 @@ public:
            return !(right.buff_const == left.buff_const);
        }
 
-       ImmutableBuffer operator =(ImmutableBuffer& right)
-          {
-              const int size = right.buffer_first.size();
-              T arr[size];
-                                                 //говно с присвоением
-              return  ImmutableBuffer(arr,size); //размер константного буфера равео 0
-                                                 //оператор! перегрузись вжух вжух!
-          }
+       ImmutableBuffer& operator =(const ImmutableBuffer& right) = delete;
 
 };
 
@@ -64,8 +57,8 @@ public:
 int main(int argc, char *argv[])
 {
 
-    double arr[] = {1.0, 2.0, 3.0};
-    double arr2[] = {2.0, 2.0, 3.0};
+    double arr[] = {1.0, 232.9, 111.1};
+    double arr2[] = {2.32, 2.22, 3232.11};
 
         ImmutableBuffer<double> buff(arr, ARR_SIZE(arr));
         ImmutableBuffer<double> buff2 = buff;
@@ -74,13 +67,14 @@ int main(int argc, char *argv[])
 
         assert(buff[0] == 1.0);
         assert(buff == buff2);
-        //buff[0] = 42.0;      //failed of compilation
-        buff = buff3;          //it doesn't work but compilation is successful
+       //buff[0] = 42.0;       //failed of compilation
+       //buff = buff3;         //failed of compilation
 
-        cout << buff2 << endl;
+        cout << buff3 << endl;
         cout << buff << endl;
-        assert(buff[1] == 3.0);//failed
+       // assert(buff[1] == 3.0); //failed
 
 
         return 0;
 }
+
