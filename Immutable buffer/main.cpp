@@ -36,7 +36,7 @@ public:
             }
             return os;
         }
-       const T &operator [](int t)
+       const T &operator [](int t) const
        {
            return buff_const[t];
        }
