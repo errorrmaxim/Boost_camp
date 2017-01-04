@@ -12,7 +12,7 @@ class HTMLElement
     unsigned height;
     bool hidden;
 public:
-    HTMLElement()   {}
+    HTMLElement():width(0), height(0), hidden(true)   {}
     HTMLElement(unsigned W, unsigned H, bool hid): width(W),height(H),hidden(hid)   {}
     unsigned int Width() const
     {
@@ -55,11 +55,9 @@ public:
     const string& Url() const;
     string Render()
     {
-        int w = static_cast<unsigned>(Width());
-        int h = static_cast<unsigned>(Height());
-        string width = to_string(w);
-        string heig = to_string(h);
-        string ret_info = "<img src = " + URL + "\" " + "Height = \"" + heig + "\" width = \"" + width + "\">";
+        string width = to_string(Width());
+        string heig = to_string(Height());
+        string ret_info = "<img src = \"" + URL + "\" " + "Height = \"" + heig + "\" width = \"" + width + "\">";
         return ret_info;
     }
 };
@@ -94,6 +92,9 @@ HTMLButtonElement obj1;
 HTMLImageElement obj2;
 HTMLTextAreaElement obj3;
 
+HTMLElement *qwe = new HTMLButtonElement;
+
+cout << get_render(*qwe) << endl;
 cout << get_render(obj1) << endl;
 cout << get_render(obj2) << endl;
 cout << get_render(obj3) << endl;
@@ -102,3 +103,4 @@ cout << get_render(obj3) << endl;
 
     return 0;
 }
+
