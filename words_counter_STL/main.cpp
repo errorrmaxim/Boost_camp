@@ -1,60 +1,46 @@
-﻿#include <iostream>
+#include <iostream>
 #include <unordered_map>
 #include <map>
 #include <fstream>
 #include <cctype>
 #include <algorithm>
 #include <set>
+
 using namespace std;
 
 
-set<string> MyRecord_foo() //funcrion for recording dates from file into SET container
+multiset<string> MyRecord_foo() //funcrion for recording dates from file into SET container
 {
     string verbs;
-    set<string> words_lol;
-    ifstream checking_file;
-    checking_file.open("/home/pasquda/MyQtProj/build-words_counter-Desktop_Qt_5_7_0_GCC_64bit-Debug/verbs.txt");
+    multiset<string> tmp_set;
+    ifstream checking_file("/home/pasquda/MyQtProj/build-words_counter-Desktop_Qt_5_7_0_GCC_64bit-Debug/verbs.txt");//path to file for deleting words;
     if(!checking_file)
     {
         cout << "Ebana vrot" << endl;
     }
     while (checking_file >> verbs)
     {
-       words_lol.insert(verbs);
-
+       tmp_set.insert(verbs);
     }
-
-    return words_lol;
+    return tmp_set;
 }
-const set<string>Word_list = MyRecord_foo(); //global SET container for words wich we wont write later
-string check_words(string &checked_word) //verification for words
+const multiset<string>word_list = MyRecord_foo(); //global SET container for words wich we wont write later
+bool check_words(string &checked_word) //verification for words
 {
-    string verbs;
-    set<string> words_lol = Word_list;
-   for(auto it = words_lol.begin(); it != words_lol.end(); ++it)
+   for(auto it : word_list)
    {
-       verbs = *it;
-      if(checked_word == verbs)
+      if(checked_word == it)
       {
-          return "lol";
+          return false;
       }
    }
-   return checked_word;
+   return true;
 
 }
 string Cutting(string &inp_word) //cuting for any symbols by (myChar function)
 {
-    string ret_word;
-
-    for(auto it = inp_word.begin(); it != inp_word.end(); ++it)
-    {
-        if(isalpha(*it))
-        {
-            ret_word.push_back(*it);
-        }
-    }
-
-    return ret_word;
+    inp_word.erase(remove_if(inp_word.begin(), inp_word.end(),[](char &elem){return (!isalpha(elem));}), inp_word.end());
+    return inp_word;
 }
 
 int main(int argc, char *argv[])
@@ -63,13 +49,13 @@ int main(int argc, char *argv[])
 
     unordered_map<string, int> words_count;
     multimap<int, string> useful_contain;
-           ifstream file("/home/pasquda/Downloads/lab.txt");
+           ifstream file("/home/pasquda/Downloads/lab.txt"); //path to file with text for pursing
            string word, comp_word;
 
            while (file >> word)
            {
                     comp_word = Cutting(word);
-                    if(check_words(comp_word) == comp_word)
+                    if(check_words(comp_word))
                     {
                         words_count[comp_word]++;
                     }
@@ -91,3 +77,4 @@ int main(int argc, char *argv[])
     return 0;
 
 }
+
