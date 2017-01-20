@@ -8,11 +8,10 @@
 
 using namespace std;
 
-
-multiset<string> MyRecord_foo() //funcrion for recording dates from file into SET container
+set<string> MyRecord_foo() //funcrion for recording dates from file into SET container
 {
     string verbs;
-    multiset<string> tmp_set;
+    set<string> tmp_set;
     ifstream checking_file("/home/pasquda/MyQtProj/build-words_counter-Desktop_Qt_5_7_0_GCC_64bit-Debug/verbs.txt");//path to file for deleting words;
     if(!checking_file)
     {
@@ -24,7 +23,7 @@ multiset<string> MyRecord_foo() //funcrion for recording dates from file into SE
     }
     return tmp_set;
 }
-const multiset<string>word_list = MyRecord_foo(); //global SET container for words wich we wont write later
+const set<string>word_list = MyRecord_foo(); //global SET container for words wich we wont write later
 bool check_words(string &checked_word) //verification for words
 {
    for(auto it : word_list)
