@@ -1,5 +1,6 @@
 #include <iostream>
 #include <unordered_map>
+#include <unordered_map>
 #include <map>
 #include <fstream>
 #include <cctype>
@@ -26,15 +27,8 @@ set<string> MyRecord_foo() //funcrion for recording dates from file into SET con
 const set<string>word_list = MyRecord_foo(); //global SET container for words wich we wont write later
 bool check_words(string &checked_word) //verification for words
 {
-   for(auto it : word_list)
-   {
-      if(checked_word == it)
-      {
-          return false;
-      }
-   }
-   return true;
-
+    bool answ = binary_search(word_list.begin(), word_list.end(), checked_word);
+    return !answ;
 }
 string Cutting(string &inp_word) //cuting for any symbols by (myChar function)
 {
@@ -48,6 +42,7 @@ int main(int argc, char *argv[])
 
     unordered_map<string, int> words_count;
     multimap<int, string> useful_contain;
+    int count = 0;
            ifstream file("/home/pasquda/Downloads/lab.txt"); //path to file with text for pursing
            string word, comp_word;
 
