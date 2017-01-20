@@ -16,7 +16,8 @@ set<string> MyRecord_foo() //funcrion for recording dates from file into SET con
     ifstream checking_file("/home/pasquda/MyQtProj/build-words_counter-Desktop_Qt_5_7_0_GCC_64bit-Debug/verbs.txt");//path to file for deleting words;
     if(!checking_file)
     {
-        cout << "Ebana vrot" << endl;
+        cout << "No such file or directory" << endl;
+        return 1;
     }
     while (checking_file >> verbs)
     {
@@ -30,10 +31,17 @@ bool check_words(string &checked_word) //verification for words
     bool answ = binary_search(word_list.begin(), word_list.end(), checked_word);
     return !answ;
 }
-string Cutting(string &inp_word) //cuting for any symbols by (myChar function)
+string Cutting(string &inp_word)  //cuting for any symbols by (myChar function)
 {
-    inp_word.erase(remove_if(inp_word.begin(), inp_word.end(),[](char &elem){return (!isalpha(elem));}), inp_word.end());
-    return inp_word;
+    string ret_word;
+    for(auto it = inp_word.begin(); it != inp_word.end(); ++it)
+    {
+        if(isalpha(*it) || *it == '-' && isalpha(*(it-1)) && isalpha(*(it+1)))
+        {
+            ret_word.push_back(*it);
+        }
+    }
+    return ret_word;
 }
 
 int main(int argc, char *argv[])
@@ -71,4 +79,3 @@ int main(int argc, char *argv[])
     return 0;
 
 }
-
