@@ -1,5 +1,4 @@
-﻿#include <lru_cache.h>
-#include <cstring>
+#include <lru_cache.h>
 #include <cassert>
 #include <typeinfo>
 
