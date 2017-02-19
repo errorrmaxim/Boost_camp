@@ -1,10 +1,12 @@
 ﻿#ifndef LRU_CACHE_H
 #define LRU_CACHE_H
 #include <list>
-#include <data_class.h>
 #include <memory>
 #include <time.h>
 #include <stdio.h>
+
+
+#include <data_class.h>
 
 class LRU_Cache
 {
