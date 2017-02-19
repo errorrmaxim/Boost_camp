@@ -9,13 +9,10 @@
 class LRU_Cache
 {
 private:
-//    In the worst situation, that cache has O(n)
-
-
 
    std::list<std::pair<int,std::shared_ptr<Data_class>>> main_cache;
-   int m_cache_size;                                                    //declared size of cache
-   int m_idElem;                                                        //identefication number of element inside cache
+   int m_cache_size;                                                    //declare size of cache
+   int m_idElem;                                                        //id of element inside cache
 public:
     LRU_Cache(int);
     void add_data(int , Data_class&);
